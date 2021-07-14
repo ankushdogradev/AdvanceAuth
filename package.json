@@ -1,12 +1,16 @@
 {
-  "name": "AdvanceAuth",
+  "name": "advance-auth",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Advance authentication and authorization system, where passwords are stored in hash form, user can reet password by sending email etc.",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "Ankush Dogra",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  }
 }
