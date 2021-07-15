@@ -1,4 +1,5 @@
 const User = require("../models/userModel");
+const ErrorResponse = require("../utils/errorResponse");
 
 exports.register = async (req, res, next) => {
   const { username, email, password } = req.body;
@@ -15,10 +16,7 @@ exports.register = async (req, res, next) => {
       user,
     });
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      error: error.message,
-    });
+    next(error);
   }
 };
 
@@ -26,10 +24,7 @@ exports.login = async (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    res.status(400).json({
-      success: false,
-      error: "Please provide email & password",
-    });
+    return next(new ErrorResponse("Please enter credentials properly", 400));
   }
   // what we doing here is, if email is correct `user` const will be assigned with password
   // then we are calling matchPassword function which will contain user password and comparing it with
@@ -38,12 +33,12 @@ exports.login = async (req, res, next) => {
     const user = await User.findOne({ email }).select("+password");
 
     if (!user) {
-      res.status(404).json({ success: false, error: "Email not registered" });
+      return next(new ErrorResponse("Email not registered", 401));
     }
 
     const isMatch = await user.matchPasswords(password);
     if (!isMatch) {
-      res.status(404).json({ success: false, error: "Invalid Password" });
+      return next(new ErrorResponse("Invalid Password", 401));
     }
 
     res.status(200).json({
@@ -51,10 +46,7 @@ exports.login = async (req, res, next) => {
       token: "abc123456789",
     });
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      error: error.message,
-    });
+    next();
   }
 };
 
