@@ -1,3 +1,6 @@
+//  @description: Forgot Password
+//  @route: GET /api/
+//  @access: Private
 exports.private = (req, res, next) => {
   res.status(200).json({
     success: true,

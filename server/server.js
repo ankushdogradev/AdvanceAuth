@@ -1,5 +1,5 @@
 require("dotenv").config({
-  path: "C:/Users/dogra/Documents/Web Development/Portfolio/FullStack/AdvanceAuth/.env",
+  path: "C:/Users/Administrator/Documents/Web Dev/Portfolio/FullStack/AdvanceAuth/.env",
 });
 
 const express = require("express");
@@ -24,6 +24,6 @@ const server = app.listen(PORT, () => {
 });
 
 process.on("unhandledRejection", (err, promise) => {
-  console.log(`Logged Error: ${err}`);
+  console.log(`Logged Error: ${err.message}`);
   server.close(() => process.exit(1));
 });
