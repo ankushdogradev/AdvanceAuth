@@ -1,19 +1,18 @@
 import React from "react";
-import { Route } from "react-router-dom";
-import { BrowseRouter as Router, Switch, Route } from "react-router-dom";
-import LoginScreen from "../../screens/LoginScreen/LoginScreen";
-import RegisterScreen from "../../screens/RegisterScreen/RegisterScreen";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import LoginRegisterScreen from "../../screens/LoginRegisterScreen/LoginRegisterScreen";
 import ForgotPaswordScreen from "../../screens/ForgotPasswordScreen/ForgotPasswordScreen";
 import ResetPasswordScreen from "../../screens/ResetPasswordScreen/ResetPasswordScreen";
 import ProtectedRoutes from "../Routes/ProtectedRoutes/ProtectedRoutes";
+import PrivateScreen from "../../screens/PrivateScreen/PrivateScreen";
 
 const Body = () => {
   return (
     <Router>
       <Switch>
         <ProtectedRoutes exact path="/" component={PrivateScreen} />
-        <Route exact path="/login" component={LoginScreen} />
-        <Route exact path="/register" component={RegisterScreen} />
+        {/* <Route exact path="/login" component={LoginScreen} /> */}
+        <Route exact path="/loginRegister" component={LoginRegisterScreen} />
         <Route exact path="/forgotPasword" component={ForgotPaswordScreen} />
         <Route
           exact

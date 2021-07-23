@@ -1,10 +1,11 @@
+import Body from "./components/Body/Body";
 import "./App.scss";
 
 const App = () => {
   return (
     <>
       <div>
-        <h1>Signup</h1>
+        <Body />
       </div>
     </>
   );
